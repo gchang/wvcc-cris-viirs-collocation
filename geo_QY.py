@@ -393,8 +393,8 @@ def find_match_index (cris_los, cris_sat, viirs_pos_in, viirs_sdrQa_in, \
 
         # setup parameters
         cos_half_fov=cos(deg2rad(fovDia/2.0))
-        if nPixel == 3200: nc = np.round(deg2rad(0.963/2)*833.0/0.75*4).astype(np.int)
-        if nPixel == 6400: nc = np.round(deg2rad(0.963/2)*833.0/0.375*4).astype(np.int)
+        if nPixel == 3200: nc = np.round(deg2rad(0.963/2)*833.0/0.75*4).astype(int)
+        if nPixel == 6400: nc = np.round(deg2rad(0.963/2)*833.0/0.375*4).astype(int)
 
 
         # return list
@@ -446,8 +446,8 @@ def find_match_index_QY (cris_los, cris_sat, viirs_pos_in, cris_time,viirs_time,
        
         # setup parameters
         cos_half_fov=cos(deg2rad(fovDia/2.0))
-        if nPixel == 3200: nc = np.round(deg2rad(0.963/2)*833.0/0.75*4).astype(np.int)
-        if nPixel == 6400: nc = np.round(deg2rad(0.963/2)*833.0/0.375*4).astype(np.int)
+        if nPixel == 3200: nc = np.round(deg2rad(0.963/2)*833.0/0.75*4).astype(int)
+        if nPixel == 6400: nc = np.round(deg2rad(0.963/2)*833.0/0.375*4).astype(int)
 
 
         # return list
