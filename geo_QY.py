@@ -93,6 +93,14 @@ def ENU2ECEF (east, north, up, lon, lat):
     return x, y, z
         
 ##################################################################################### 
+def list_to_object_array(arrays):
+    """1-D object array holding each array of the list as one element."""
+    out = np.empty(len(arrays), dtype=object)
+    for i, a in enumerate(arrays):
+        out[i] = a
+    return out
+
+##############################################################################################
 def match_cris_viirs_QY(crisLos, crisPos, viirsPos, cristime,viirstime):
     """
     Match crisLos with viirsPos using the method by Wang et al. (2016)
@@ -128,16 +136,18 @@ def match_cris_viirs_QY(crisLos, crisPos, viirsPos, cristime,viirstime):
                                      crisSat.reshape(crisSat.size//3, 3),\
                                      viirsPos, cristimebig.reshape(1,crisLos.size//3),viirstime, mx, my)
 
-    nidy = np.array(idy)
+    # idy and idx hold one index array per CrIS FOV, and the arrays differ in length,
+    # so they are kept as object arrays (np.array() on a ragged list fails in numpy >= 1.24)
+    nidy = sum(np.size(i) for i in idy)
     ### print('nidy.size before: ', nidy.size)
 
-    if nidy.size == 0:
+    if nidy == 0:
       print('Warning: no co-location is found.')
       return None, None
-        
-    idy = np.array(idy).reshape(crisLos.shape[0:crisLos.ndim-1])
+
+    idy = list_to_object_array(idy).reshape(crisLos.shape[0:crisLos.ndim-1])
     ### print('idy.shape after: ', idy.shape)
-    idx = np.array(idx).reshape(crisLos.shape[0:crisLos.ndim-1])
+    idx = list_to_object_array(idx).reshape(crisLos.shape[0:crisLos.ndim-1])
     
     return idy, idx
 
