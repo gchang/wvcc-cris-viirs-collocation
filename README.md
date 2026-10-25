@@ -103,6 +103,7 @@ to fetch from LAADS DAAC.
 
 - Python 3.8+
 - `numpy`, `netCDF4`, `pykdtree`
+- numpy 1.24 and newer, including numpy 2, work since the 2026-10-25 fixes in `geo_QY.py`
 
 ```bash
 pip install -r requirements.txt
